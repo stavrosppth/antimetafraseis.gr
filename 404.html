@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="el" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Η σελίδα δεν βρέθηκε — Αντιμεταφράσεις</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    /* Apply saved theme before page renders to avoid a flash of wrong colours */
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="site-title" href="/">Αντιμεταφράσεις</a>
+
+      <form class="nav-search" action="/search/" method="get" role="search">
+        <input type="search" name="q" placeholder="Αναζήτηση…"
+               value="" aria-label="Αναζήτηση ποιημάτων" />
+        <button type="submit">🔍</button>
+      </form>
+
+      <ul>
+        <li><a href="/poems/">Ποιήματα</a></li>
+        <li><a href="/poets/">Ποιητές</a></li>
+        <li><a href="/about/">Σχετικά</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας">🌙</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    
+<h1>Η σελίδα δεν βρέθηκε</h1>
+<p>Η σελίδα που ζητήσατε δεν υπάρχει (ή δεν υπάρχει ακόμα).</p>
+<p class="back-link"><a href="/poems/">← Όλα τα ποιήματα</a></p>
+
+  </main>
+
+  <footer>
+    <p>Αντιμεταφράσεις ισπανόφωνης (και όχι μόνο) ποίησης στα ελληνικά.</p>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
+
+    // Set correct icon on page load — respect OS preference if no manual choice saved
+    var saved = localStorage.getItem('theme');
+    var initial = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="el" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Αντιμεταφράσεις</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    /* Apply saved theme before page renders to avoid a flash of wrong colours */
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="site-title" href="/">Αντιμεταφράσεις</a>
+
+      <form class="nav-search" action="/search/" method="get" role="search">
+        <input type="search" name="q" placeholder="Αναζήτηση…"
+               value="" aria-label="Αναζήτηση ποιημάτων" />
+        <button type="submit">🔍</button>
+      </form>
+
+      <ul>
+        <li><a href="/poems/">Ποιήματα</a></li>
+        <li><a href="/poets/">Ποιητές</a></li>
+        <li><a href="/about/">Σχετικά</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας">🌙</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    
+<div class="home-welcome">
+  <div class="home-banner-wrap">
+    <img src="/static/Decker_Ripening_Pears_NGA.jpg" alt="Διακοσμητική εικόνα" class="home-banner">
+    <div class="home-banner-overlay">
+      <h1>Καλώς ορίσατε στις Αντιμεταφράσεις</h1>
+      <nav class="home-nav">
+        <a href="/poems/" class="home-link">Ποιήματα</a>
+        <a href="/poets/" class="home-link">Ποιητές</a>
+      </nav>
+    </div>
+    <p class="home-banner-credit">© National Gallery of Art</p>
+  </div>
+</div>
+
+  </main>
+
+  <footer>
+    <p>Αντιμεταφράσεις ισπανόφωνης (και όχι μόνο) ποίησης στα ελληνικά.</p>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
+
+    // Set correct icon on page load — respect OS preference if no manual choice saved
+    var saved = localStorage.getItem('theme');
+    var initial = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="el" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Octavio Paz — Ισπανική Ποίηση στα Ελληνικά</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    /* Apply saved theme before page renders to avoid a flash of wrong colours */
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="site-title" href="/">Αντιμεταφράσεις</a>
+
+      <form class="nav-search" action="/search/" method="get" role="search">
+        <input type="search" name="q" placeholder="Αναζήτηση…"
+               value="" aria-label="Αναζήτηση ποιημάτων" />
+        <button type="submit">🔍</button>
+      </form>
+
+      <ul>
+        <li><a href="/poems/">Ποιήματα</a></li>
+        <li><a href="/poets/">Ποιητές</a></li>
+        <li><a href="/about/">Σχετικά</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας">🌙</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    
+<div class="poet-header">
+  <h1>Octavio Paz</h1>
+  <p class="poet-meta">
+    Μεξικάνος
+    · 1914
+    – 1998
+  </p>
+</div>
+
+
+  <p class="poet-bio">Ο Οκτάβιο Πας γεννήθηκε το 1914 στην Πόλη του Μεξικού. Προερχόμενος από προοδευτική οικογένεια -ο παππούς του ήταν φιλελεύθερος διανοούμενος και ο πατέρας του προοδευτικός δημοσιογράφος- ο Πας συμμετείχε στις αγροτικές εξεγέρσεις του Εμιλιάνο Σαπάτα, καθώς και στο Β&#39; Διεθνές Συνέδριο Αντιφασιστών Συγγραφέων στη Βαλένθια το 1937. Επηρρεάστηκε από τον Αγγλο-Αμερικάνικο μοντερνισμό μετά την επίσκεψή του στις ΗΠΑ με υποτροφία Guggenheim το 1943.
+Τιμήθηκε με τα βραβεία Cervantes (1980), Neustadt (1982) και Nobel (1990).</p>
+
+
+<h2>Ποιήματα</h2>
+
+  <ul class="poem-list">
+    
+    <li>
+      <a href="/poem/5/">Εδώ</a>
+      <span class="subtitle">Aquí</span>
+    </li>
+    
+    <li>
+      <a href="/poem/3/">Τα αποτελέσματα της βάφτισης</a>
+      <span class="subtitle">Efectos del bautismo</span>
+    </li>
+    
+  </ul>
+
+
+<p class="back-link"><a href="/poets/">← Όλοι οι ποιητές</a></p>
+
+  </main>
+
+  <footer>
+    <p>Αντιμεταφράσεις ισπανόφωνης (και όχι μόνο) ποίησης στα ελληνικά.</p>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
+
+    // Set correct icon on page load — respect OS preference if no manual choice saved
+    var saved = localStorage.getItem('theme');
+    var initial = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>

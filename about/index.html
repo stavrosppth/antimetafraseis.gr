@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="el" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Σχετικά — Ισπανική Ποίηση στα Ελληνικά</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    /* Apply saved theme before page renders to avoid a flash of wrong colours */
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="site-title" href="/">Αντιμεταφράσεις</a>
+
+      <form class="nav-search" action="/search/" method="get" role="search">
+        <input type="search" name="q" placeholder="Αναζήτηση…"
+               value="" aria-label="Αναζήτηση ποιημάτων" />
+        <button type="submit">🔍</button>
+      </form>
+
+      <ul>
+        <li><a href="/poems/">Ποιήματα</a></li>
+        <li><a href="/poets/">Ποιητές</a></li>
+        <li><a href="/about/">Σχετικά</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας">🌙</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    
+<h1>Σχετικά με τις Αντιμεταφράσεις (και την αντιμετάφραση)</h1>
+<p>
+  Μια ιστοσελίδα-ρακοσυλλέκτης αντιμεταφράσεων ισπανικής ποίησης στην ελληνική γλώσσα. <br>
+  Κάθε ποίημα παρουσιάζεται σε μια πρωτότυπη αντιμετάφραση, παράλληλα με το πρωτότυπο ισπανικό κείμενο.<br><br>
+
+  Η ιδέα της αντιμετάφρασης οφείλεται (πιθανότατα) στον Χιλιανό ποιητή Nicanor Parra, εισηγητή ή τουλάχιστον μέγιστο αντιπρόσωπο της αντιποίησης.<br>
+  Στην αμερικάνικη συλλογή του Parra με τίτλο "Antipoems: How to look better & feel great" (New Directions, 2004), η (αντι)μεταφράστρια Liz Werner αναφέρει την επιμονή του Parra σ'αυτόν τον όρο έναντι της τυπικής μετάφρασης, στην προσπάθειά του να ενσωματώσει την ιδέα της πολιτισμικής ενδημικότητας ως ταυτοτικό στοιχείο της γλώσσας. <br>
+  Προς τιμήν αυτής της ιδέας, ο ιστότοπος στήνεται με σκοπό να παρέχει αντιμεταφράσεις ποιημάτων που ο διαχειριστής δεν έχει καταφέρει (με ελάχιστη προσπάθεια) να εντοπίσει σε ελληνική μετάφραση... ή αντιμετάφραση.
+</p>
+<p>
+  <!-- Προσθέστε εδώ πληροφορίες για εσάς ή τον σκοπό του ιστότοπου. -->
+</p>
+
+  </main>
+
+  <footer>
+    <p>Αντιμεταφράσεις ισπανόφωνης (και όχι μόνο) ποίησης στα ελληνικά.</p>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
+
+    // Set correct icon on page load — respect OS preference if no manual choice saved
+    var saved = localStorage.getItem('theme');
+    var initial = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    toggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>
